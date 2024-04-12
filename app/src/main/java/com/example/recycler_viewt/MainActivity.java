@@ -5,11 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ItemClickListner {
 
 
     //1.Adapter View
@@ -49,7 +51,15 @@ public class MainActivity extends AppCompatActivity {
         myAdapter=new MyAdapter(itemList);
         recyclerView.setAdapter((myAdapter));
 
+        myAdapter.setClickListner(this);
 
+
+
+    }
+
+    @Override
+    public void onCLick(View v, int pos) {
+        Toast.makeText(this, "You Choose: "+ itemList.get(pos).getItemName(), Toast.LENGTH_SHORT).show();
 
     }
 }
